@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import{Link, NavLink } from "react-router-dom";
 import{FaBarsStaggered, FaXmark} from "react-icons/fa6";
+import Login from '../pages/Login';
 
 const Navbar = () => {
   const [isMenuopen, setIsMenuopen] = useState(false);
@@ -43,11 +44,14 @@ const Navbar = () => {
             ))
           }
         </ul>
+      
 
         {/* signup & login btn */}
-        <div className='text-base text-primary font-medium space-x-5 hidden lg:block'>
-             <Link to="/login" className='py-2 px-5 border rounded'>Log in</Link>
-             <Link to="/sign-up" className='py-2 px-5 border rounded bg-blue text-white'>Sign up</Link>
+        <div className=''>
+             <a to="/login" className=' bg-black text-white py-2 px-5 border rounded hover:bg-slate-800 duration-300 cursor-pointer'
+             onClick={()=>document.getElementById("my_modal_3").showModal()}>Login</a>
+             <Login/>
+             {/* <Link to="/signup" className='py-2 px-5  pl-15 border rounded bg-blue text-white'>Sign up</Link> */}
         </div>
         {/* mobile menu */}
         <div className='md:hidden block'>
@@ -58,12 +62,7 @@ const Navbar = () => {
             
           </button>
         </div>
-      </nav>
-
-      {/* navitems fo mobile */}
-
-  
-       
+      </nav>       
     </header>
   )
 }

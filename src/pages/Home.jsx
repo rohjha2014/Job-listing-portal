@@ -15,12 +15,14 @@ const  Home = ()  => {
     
     useEffect(()=>{ 
       setIsLoading(true);
-      fetch("jobs.json").then(res=> res.json()).then(data=>{ 
+      fetch("jobs.json")
+      .then((res)=> res.json())
+      .then((data)=>{ 
         // console.log(data)
         setJobs(data);
         setIsLoading(false);
-      })
-    },[])
+      });
+    },[]);
 
     // console.log(jobs)
 
@@ -78,12 +80,12 @@ const  Home = ()  => {
 
       // category filtering
       if(selected){ 
-         filteredJobs =filteredJobs.filter(({jobLocation,maxPrice,experienceLevel,salaryType,employmentType,
+         filteredJobs = filteredJobs.filter(({jobLocation,maxPrice,experienceLevel,salaryType,employmentType,
           postingDate
          })=>( 
                jobLocation.toLowerCase() === selected.toLowerCase() ||
-              parseInt(maxPrice) ===parseInt(selected) ||
-             postingDate >= selected ||
+              parseInt(maxPrice) <=parseInt(selected) ||
+              postingDate >= selected ||
               salaryType.toLowerCase() ===selected.toLowerCase() ||
               experienceLevel.toLowerCase() === selected.toLowerCase() ||
               employmentType.toLowerCase()===selected.toLowerCase()
@@ -94,7 +96,7 @@ const  Home = ()  => {
       //slice the data based on current page
       const {startIndex,endIndex}=calculatePageRange();
       filteredJobs = filteredJobs.slice(startIndex,endIndex)
-       return filteredJobs.map((data,i)=> <Card key={i} data={data}/>)
+       return filteredJobs.map((data,i) => <Card key={i} data={data}/>)
 
     }
 

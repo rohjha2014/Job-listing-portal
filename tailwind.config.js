@@ -12,6 +12,8 @@
       }
     },
   },
-  plugins: [],
+  plugins: [require('daisyui'),
+    
+  ],
 }
 
